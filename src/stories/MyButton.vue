@@ -20,6 +20,10 @@
   <my-button>Whoa, I'm a story!</my-button>
 </story>
 
+<story case="Another one!">
+  <my-button>Hey, I'm a different story</my-button>
+</story>
+
 <style>
   .button-styles {
     border: 1px solid #eee;

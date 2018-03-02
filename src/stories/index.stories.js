@@ -13,15 +13,12 @@ storiesOf('Welcome', module).add('to Storybook', () => ({
   methods: { action: linkTo('Button') },
 }));
 
-storiesOf('Button', module)
-  .add(MyButton.__story.case, () => ({
-    components: { MyButton },
-    template: MyButton.__story.template
-  }))
-  .add('with some emoji', () => ({
-    components: { MyButton },
-    template: '<my-button @click="action">😀 😎 👍 💯</my-button>',
-    methods: { action: action('clicked') },
-  }));
+const MyButtonStories = storiesOf('Button', module)
 
+MyButton.__stories.forEach(story => {
+  MyButtonStories.add(story.case, () => ({
+    components: {MyButton},
+    template: story.template
+  }))
+})
 /* eslint-enable react/react-in-jsx-scope */
