@@ -15,12 +15,18 @@ storiesOf('Welcome', module).add('to Storybook', () => ({
 
 const MyButtonStories = storiesOf('Button', module)
 
-if (MyButton.__stories) {
-  MyButton.__stories.forEach(story => {
-    MyButtonStories.add(story.name, () => ({
-      components: {MyButton},
-      template: story.template
-    }))
-  })
-}
+// const generateStories = (group, vueComponent) => {
+//   if (!vueComponent.__stories) return
+//   vueComponent.__stories.forEach(story => {
+//     group.add(story.name, () => ({
+//       components: {
+//         [vueComponent.name]: vueComponent
+//       },
+//       template: story.template
+//     }))
+//   })
+// }
+
+// generateStories(MyButtonStories, MyButton)
+
 /* eslint-enable react/react-in-jsx-scope */

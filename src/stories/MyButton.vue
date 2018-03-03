@@ -17,7 +17,7 @@
 </script>
 
 <story name="Button with better text">
-  <my-button>Click Me!</my-button>
+  <my-button>No way!</my-button>
 </story>
 
 <style>
