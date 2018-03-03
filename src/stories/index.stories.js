@@ -15,10 +15,12 @@ storiesOf('Welcome', module).add('to Storybook', () => ({
 
 const MyButtonStories = storiesOf('Button', module)
 
-MyButton.__stories.forEach(story => {
-  MyButtonStories.add(story.case, () => ({
-    components: {MyButton},
-    template: story.template
-  }))
-})
+if (MyButton.__stories) {
+  MyButton.__stories.forEach(story => {
+    MyButtonStories.add(story.name, () => ({
+      components: {MyButton},
+      template: story.template
+    }))
+  })
+}
 /* eslint-enable react/react-in-jsx-scope */

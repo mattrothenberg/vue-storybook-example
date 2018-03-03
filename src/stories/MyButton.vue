@@ -16,19 +16,15 @@
   }
 </script>
 
-<story case="Default case">
-  <my-button>Whoa, I'm a story!</my-button>
-</story>
-
-<story case="Another one!">
-  <my-button>Hey, I'm a different story</my-button>
+<story name="Button with better text">
+  <my-button>Click Me!</my-button>
 </story>
 
 <style>
   .button-styles {
     border: 1px solid #eee;
     border-radius: 3px;
-    background-color: #FFFFFF;
+    background-color: #fff;
     cursor: pointer;
     font-size: 15pt;
     padding: 3px 10px;

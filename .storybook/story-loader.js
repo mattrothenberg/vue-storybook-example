@@ -1,16 +1,20 @@
 const loaderUtils = require('loader-utils')
-let stories = []
 
-module.exports = function (source, map) {
-  const loaderOptions = loaderUtils.getOptions(this) || {}
+module.exports = function (source) {
+  const story = generateCode(source, this)
+  this.callback(null, `module.exports = ${story}`)
+}
+
+function generateCode (source, ctx) {
+  let code = ''
   const story = {
     template: source.trim(),
-    case: loaderUtils.getOptions(this).case || ''
-  }
+    name: loaderUtils.getOptions(ctx).name || ''
+  } 
 
-  stories.push(story)
-
-  this.callback(null, 'module.exports = function(Component) {Component.options.__stories = ' +
-    JSON.stringify(stories) +
-    '}', map)
+  code += `function (Component) {
+    Component.options.__stories = Component.options.__stories || []
+    Component.options.__stories.push(${JSON.stringify(story)})
+  }\n`
+  return code
 }
