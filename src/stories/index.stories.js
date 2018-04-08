@@ -3,30 +3,18 @@
 import { storiesOf } from '@storybook/vue';
 import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
+import { withNotes } from '@storybook/addon-notes';
+import { withKnobs, text, boolean, number } from '@storybook/addon-knobs/vue';
+import { registerStories } from 'vue-storybook'
+import { configure } from '@storybook/vue';
 
-import MyButton from './MyButton.vue';
-import Welcome from './Welcome.vue';
+const req = require.context('./', true, /\.vue$/)
 
-storiesOf('Welcome', module).add('to Storybook', () => ({
-  components: { Welcome },
-  template: '<welcome :showApp="action" />',
-  methods: { action: linkTo('Button') },
-}));
+function loadStories() {
+  req.keys().forEach((filename) => {
+    registerStories(req, filename, storiesOf, {withKnobs, withNotes, action, text})
+  })
+}
 
-const MyButtonStories = storiesOf('Button', module)
-
-// const generateStories = (group, vueComponent) => {
-//   if (!vueComponent.__stories) return
-//   vueComponent.__stories.forEach(story => {
-//     group.add(story.name, () => ({
-//       components: {
-//         [vueComponent.name]: vueComponent
-//       },
-//       template: story.template
-//     }))
-//   })
-// }
-
-// generateStories(MyButtonStories, MyButton)
-
+loadStories()
 /* eslint-enable react/react-in-jsx-scope */
